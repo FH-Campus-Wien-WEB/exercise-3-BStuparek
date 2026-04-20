@@ -1,13 +1,33 @@
 @import url(base.css);
 
 h1 {
-  font-size: 200%;
-  margin: 8px 0px;
+  font-weight: bold;
+  margin-top: 10px;
 }
 
 /* Constrain the page to the viewport */
 html, body {
   height: 100vh;
+  margin: 0;
+}
+
+img {
+  border-radius: 10px;
+  max-width: 100%;
+}
+article{
+  background-color: #f5f5f5e7;
+  border-radius: 12px;
+  box-shadow: 3px 3px;
+}
+span{
+  margin-right: 10 px;
+}
+.genre{
+  background-color: lightgray;
+  padding: 10px;
+  border-radius: 8px;
+  display: inline-block;
 }
 
 /* Center the nav's header and list */
@@ -28,9 +48,64 @@ ul {
   margin: 16px;
   list-style-type: none;
 }
+.container{
+  display: grid;
+
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr auto;
+
+  grid-template-areas: 
+    "h"
+    "n"
+    "m"
+    "f";
+
+    height: 100vh;
+}
 
 /* Task 2.1. Lay out the childs of the 'body' using Grid Template Areas. */
+@media (min-width:768px){
+  .container{
+    display: grid;
+    grid-template-columns: minmax(192px,256px) 1fr;
+    grid-template-rows: minmax(64px,128px) 1fr minmax(64px,128px);
 
+    grid-template-areas: 
+      "h h"
+      "n m"
+      "f f";
+  
+  height: 100vh;
+}
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-area: h;
+}
+
+.sidebar {
+  display: flex;
+  gap: 10px;
+  grid-area: n;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5px;
+}
+@media (min-width: 768px){
+  .content {
+    grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+  }
+}
+
+footer {
+  grid-area: f;
+}
 
 /* Task 3.1. Make the header element a flex container and center its children
    vertically and horizontally.
@@ -40,13 +115,27 @@ ul {
 /* Task 3.2. Make the list items of the unordered list in the nav element a flex container, 
    use column direction and center the child items
  */
-
+nav ul {
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  align-items: stretch;
+}
 /* Task 3.3. Make the main element a Flexbox container */
 
+main{
+  flex: 1 1 300px;
+  max-width: 384 px;
+  overflow-y: auto;
+}
 
 /* Task 3.4. Make the footer's ul a Flexbox container */
 
-
+footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 /* From here on styling from exercise 1 */
 img {
   border-radius: 12px;
@@ -55,8 +144,8 @@ img {
 article {
   background-color: lightgray;
   border-radius: 16px;
+  max-width: 384px;
   padding: 16px;
-  width: 384px;
   margin: 8px;
 }
 
